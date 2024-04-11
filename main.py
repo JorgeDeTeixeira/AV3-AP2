@@ -129,20 +129,6 @@ class Biblioteca:
             else:
                 print(f"Erro: Livro '{titulo}' não encontrado no acervo.")
 
-    def processar_devolucao(self):
-        num_devolvidos = 0
-        while not self.pilha_devolucao.esta_vazia():
-            titulo = self.pilha_devolucao.remover()
-            livro = self.acervo.buscar(titulo)
-            if livro is not None:
-                livro.exemplares += 1
-                num_devolvidos += 1
-            else:
-                print(f"Erro: Livro '{titulo}' não encontrado no acervo.")
-        print(
-            f"Processamento de devoluções concluído. {max(num_devolvidos, 0)} livros devolvidos."
-        )
-
     def menu(self):
         while True:
             print("\nMenu da Biblioteca:")
@@ -151,8 +137,7 @@ class Biblioteca:
             print("3. Solicitar Empréstimo")
             print("4. Processar Empréstimo")
             print("5. Devolver Livro")
-            print("6. Processar Devolução")
-            print("7. Sair")
+            print("6. Sair")
 
             opcao = input("Digite a opção desejada: ")
 
@@ -173,8 +158,6 @@ class Biblioteca:
                 titulo = input("Título do livro a ser devolvido: ")
                 self.devolver_livro(titulo)
             elif opcao == "6":
-                self.processar_devolucao()
-            elif opcao == "7":
                 print("OBRIGADO POR USAR NOSSO SISTEMA!")
                 break
             else:
